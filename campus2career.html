@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campus2Career</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f8faff;
+    color: #1a1a2e;
+  }
+
+  /* NAV */
+  nav {
+    background: #fff;
+    border-bottom: 1px solid #e8edf5;
+    padding: 1rem 6vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .logo {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #2563eb;
+  }
+  .logo span { color: #1a1a2e; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: #555; font-size: 0.9rem; font-weight: 500; }
+  .nav-links a:hover { color: #2563eb; }
+  .nav-btn {
+    background: #2563eb;
+    color: #fff;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 5rem 6vw 4rem;
+    background: linear-gradient(180deg, #eef4ff 0%, #f8faff 100%);
+  }
+  .hero-tag {
+    display: inline-block;
+    background: #dbeafe;
+    color: #2563eb;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.35rem 0.9rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.04em;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: #0f172a;
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 span { color: #2563eb; }
+  .hero p {
+    font-size: 1.05rem;
+    color: #64748b;
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+  .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-blue {
+    background: #2563eb;
+    color: #fff;
+    padding: 0.85rem 2rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-blue:hover { background: #1d4ed8; transform: translateY(-1px); }
+  .btn-outline {
+    background: #fff;
+    color: #2563eb;
+    padding: 0.85rem 2rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 1.5px solid #2563eb;
+    transition: background 0.2s;
+  }
+  .btn-outline:hover { background: #eef4ff; }
+
+  /* STATS */
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    background: #fff;
+    border-top: 1px solid #e8edf5;
+    border-bottom: 1px solid #e8edf5;
+    flex-wrap: wrap;
+  }
+  .stat {
+    flex: 1; min-width: 150px;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-right: 1px solid #e8edf5;
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-size: 2rem; font-weight: 800; color: #2563eb; }
+  .stat-text { font-size: 0.82rem; color: #94a3b8; margin-top: 0.3rem; font-weight: 500; }
+
+  /* SECTIONS */
+  section { padding: 5rem 6vw; }
+  .section-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; color: #2563eb; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .section-title { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; color: #0f172a; margin-bottom: 0.8rem; }
+  .section-sub { font-size: 0.95rem; color: #64748b; max-width: 480px; line-height: 1.7; }
+
+  /* FEATURES */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem;
+    margin-top: 3rem;
+  }
+  .feature-card {
+    background: #fff;
+    border: 1px solid #e8edf5;
+    border-radius: 14px;
+    padding: 1.8rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .feature-card:hover { box-shadow: 0 8px 30px rgba(37,99,235,0.08); transform: translateY(-2px); }
+  .f-icon {
+    width: 44px; height: 44px;
+    background: #eff6ff;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  .f-title { font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.4rem; }
+  .f-desc { font-size: 0.875rem; color: #64748b; line-height: 1.65; }
+
+  /* ROLES */
+  .roles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem;
+    margin-top: 3rem;
+  }
+  .role-card {
+    background: #fff;
+    border: 1.5px solid #e8edf5;
+    border-radius: 14px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .role-card:hover { border-color: #93c5fd; box-shadow: 0 6px 20px rgba(37,99,235,0.07); }
+  .role-emoji { font-size: 2.2rem; display: block; margin-bottom: 0.8rem; }
+  .role-title { font-weight: 700; font-size: 1.05rem; color: #0f172a; margin-bottom: 0.5rem; }
+  .role-desc { font-size: 0.85rem; color: #64748b; line-height: 1.6; }
+  .role-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; justify-content: center; }
+  .tag {
+    background: #eff6ff; color: #2563eb;
+    font-size: 0.7rem; font-weight: 600;
+    padding: 0.25rem 0.6rem; border-radius: 6px;
+  }
+
+  /* DOWNLOAD */
+  #download {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    text-align: center;
+    padding: 5rem 6vw;
+  }
+  .dl-box {
+    background: #fff;
+    border-radius: 20px;
+    padding: 3rem 2.5rem;
+    max-width: 480px;
+    margin: 0 auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  }
+  .dl-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
+  .dl-title { font-size: 1.6rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; }
+  .dl-sub { font-size: 0.9rem; color: #64748b; margin-bottom: 1.5rem; line-height: 1.6; }
+  .dl-info {
+    display: flex; justify-content: center; gap: 1.5rem;
+    font-size: 0.8rem; color: #94a3b8; margin-bottom: 2rem; flex-wrap: wrap;
+  }
+  .btn-dl {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: #2563eb; color: #fff;
+    padding: 1rem 2.2rem; border-radius: 12px;
+    font-size: 1.05rem; font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-dl:hover { background: #1d4ed8; transform: translateY(-1px); }
+  .dl-note {
+    font-size: 0.78rem; color: #94a3b8; margin-top: 1rem;
+    line-height: 1.5;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #fff;
+    border-top: 1px solid #e8edf5;
+    padding: 2rem 6vw;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo { font-size: 1.1rem; font-weight: 800; color: #2563eb; }
+  .footer-copy { font-size: 0.82rem; color: #94a3b8; }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .stat { border-right: none; border-bottom: 1px solid #e8edf5; }
+    .dl-box { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Campus<span>2Career</span></div>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#roles">Roles</a></li>
+    <li><a href="#download">Download</a></li>
+  </ul>
+  <a href="#download" class="nav-btn">Download App</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">📱 Now Available on Android</div>
+  <h1>Bridge the Gap Between<br><span>Campus & Career</span></h1>
+  <p>One platform for students, universities, and companies. Apply for internships, get AI guidance, and land your dream role.</p>
+  <div class="hero-btns">
+    <a href="#download" class="btn-blue">⬇ Download APK</a>
+    <a href="#features" class="btn-outline">See Features</a>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">3</div>
+    <div class="stat-text">User Roles</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">AI</div>
+    <div class="stat-text">Powered Resume Review</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">P2P</div>
+    <div class="stat-text">Video Interviews</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">Free</div>
+    <div class="stat-text">No Hidden Fees</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-label">Features</div>
+  <div class="section-title">Everything in one app</div>
+  <p class="section-sub">From applying to internships to acing interviews — Campus2Career has you covered.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="f-icon">🤖</div>
+      <div class="f-title">AI Resume Review</div>
+      <div class="f-desc">Get a score out of 100, key strengths, improvement areas, and missing keywords — powered by LLaMA AI.</div>
+    </div>
+    <div class="feature-card">
+      <div class="f-icon">📚</div>
+      <div class="f-title">Skill Lab Quizzes</div>
+      <div class="f-desc">AI-generated 20-question quizzes on any tech topic. Get a personalized study plan based on your results.</div>
+    </div>
+    <div class="feature-card">
+      <div class="f-icon">💬</div>
+      <div class="f-title">Career Counselor Chat</div>
+      <div class="f-desc">Chat with an AI career advisor any time. Keeps full conversation history for better, contextual advice.</div>
+    </div>
+    <div class="feature-card">
+      <div class="f-icon">📹</div>
+      <div class="f-title">Video Interviews</div>
+      <div class="f-desc">Built-in video calling for companies to interview candidates — no Zoom or Google Meet needed.</div>
+    </div>
+    <div class="feature-card">
+      <div class="f-icon">📋</div>
+      <div class="f-title">Internship Logbook</div>
+      <div class="f-desc">Students log daily tasks. Faculty reviews and gives feedback — all tracked inside the app.</div>
+    </div>
+    <div class="feature-card">
+      <div class="f-icon">📰</div>
+      <div class="f-title">Live Tech News</div>
+      <div class="f-desc">Auto-refreshing feed from Dev.to and Hacker News to keep you updated on the tech world.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ROLES -->
+<section id="roles" style="background: #fff; border-top: 1px solid #e8edf5; border-bottom: 1px solid #e8edf5;">
+  <div class="section-label">Who Is It For</div>
+  <div class="section-title">Built for everyone on campus</div>
+
+  <div class="roles-grid">
+    <div class="role-card">
+      <span class="role-emoji">🎓</span>
+      <div class="role-title">Students</div>
+      <div class="role-desc">Apply to internships, build your resume, upskill with quizzes, and track your internship progress.</div>
+      <div class="role-tags">
+        <span class="tag">Applications</span>
+        <span class="tag">AI Resume</span>
+        <span class="tag">Skill Lab</span>
+      </div>
+    </div>
+    <div class="role-card">
+      <span class="role-emoji">🏢</span>
+      <div class="role-title">Companies</div>
+      <div class="role-desc">Post internship openings, review applicants, and conduct live video interviews inside the app.</div>
+      <div class="role-tags">
+        <span class="tag">Post Roles</span>
+        <span class="tag">View Applicants</span>
+        <span class="tag">Video Call</span>
+      </div>
+    </div>
+    <div class="role-card">
+      <span class="role-emoji">👨‍🏫</span>
+      <div class="role-title">Faculty</div>
+      <div class="role-desc">Monitor student internship activity, review daily logbook entries, and provide feedback.</div>
+      <div class="role-tags">
+        <span class="tag">Logbook Review</span>
+        <span class="tag">Feedback</span>
+        <span class="tag">Track Progress</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section id="download">
+  <div class="dl-box">
+    <span class="dl-icon">📱</span>
+    <div class="dl-title">Download the App</div>
+    <p class="dl-sub">Free to download. Works on all Android devices running Android 8.0 and above.</p>
+    <div class="dl-info">
+      <span>🤖 Android 8.0+</span>
+      <span>🛡️ Safe & Free</span>
+      <span>⚡ Version 1.0</span>
+    </div>
+    <a href="campus2career.apk" class="btn-dl" download>⬇ Download APK</a>
+    <p class="dl-note">After downloading, go to Settings → Security → Enable "Install from unknown sources" to install the APK.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Campus2Career</div>
+  <div class="footer-copy">© 2025 Campus2Career. Made for students, by students.</div>
+</footer>
+
+</body>
+</html>
